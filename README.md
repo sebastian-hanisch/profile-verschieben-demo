@@ -1,7 +1,6 @@
 # Zwischen zwei Verteilungen – verschieben statt mischen – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-profile-verschieben-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-profile-verschieben-demo.streamlit.app/)**
 
 Demo der Reihe **optimaler-transport** („Optimaler Transport: Verteilungen ineinander verschieben“) in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Sie setzt an zwei Annahmen an, die die Demos „Vom Zuordnen zum Transportieren“ und „Abstand zwischen Verteilungen“ stehen lassen: *Bei Gleichstand ist die Wahl des optimalen Plans für den Wert gleichgültig.* und die Frage, wie man von einer Verteilung zur anderen kommt (die Demo „Abstand zwischen Verteilungen“ misst nur den Abstand). Drei Experimente prüfen die Annahme „Die Mitte zweier Verteilungen ist ihre Mischung“: Zwischenschritte (Experiment 1), Tagesprofile dreier Standorte (Experiment 2) und unterschiedliche Morgenanteile (Experiment 3).
 
