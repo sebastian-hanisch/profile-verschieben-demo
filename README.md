@@ -15,7 +15,7 @@ Demo der Reihe **optimaler-transport** („Optimaler Transport: Verteilungen ine
 - **Mischung und Verschiebung:** $P_t^{\text{Mischung}} = (1 - t)\,P + t\,Q$ und $Q_t^{\text{Verschiebung}}(u) = (1 - t)\,Q_P(u) + t\,Q_Q(u)$ mit den **Quantilfunktionen** (englisch quantile functions) $Q_P$, $Q_Q$. In 1D ist $W_2^2(P, Q) = \int_0^1 (Q_P(u) - Q_Q(u))^2\,\mathrm{d}u$. Das **Baryzentrum** ist der Minimierer von $\sum_k \lambda_k W_2^2(\nu, \nu_k)$; in 1D ist es für nichtatomare Maße das Mittel der Quantilfunktionen (Agueh, Carlier 2011, Abschnitt 6.1, im Wortlaut gelesen); für Punktmassen (Atom-Fassung) steht das dort nicht, die Demo prüft es selbst gegen ein Linearprogramm.
 - **Gipfel** (englisch mode) sind lokale Maxima der Dichte mit einer **Prominenz** (englisch prominence) von mindestens einem Anteil der höchsten Dichte, gemessen über dem höheren der beiden Täler zu den nächsten höheren Gipfeln (Definition von `scipy.signal.find_peaks`); Standard 2 %.
 - **Spitzenstunde** (englisch peak hour): größter Anteil der Tagesnachfrage in einem Intervall von einer Stunde; **Fensterdeckung**: Anteil der Gesamtnachfrage in den zwei Fenstern 8 ± 2,4 und 18 ± 2,4 Uhr (zwei Streuungen).
-- Formeln und Handbeispiele stehen im Expander „📐 Mathematische Formulierung“ der App.
+- Formeln und Handbeispiele stehen im Expander „📐 Mathematische Formulierung“ der App. Eine ausführliche, verständlich geschriebene Erklärung mit Fachteil steht auf der Seite [Verschieben statt mischen verständlich erklärt](https://sebastianhanisch.net/verschieben-statt-mischen-erklaert.html); die App fasst sie im Expander „💬 In einfachen Worten“ zusammen.
 
 ## Methodik
 
@@ -143,7 +143,7 @@ Weitere Grenzen:
 - **Randfälle** (`tests/test_edge_cases.py`): gleiche Profile, disjunkte Träger, ein Atomort, zwei gleiche Standorte, t am Rand, $s = 0$, Masse außerhalb des Tages, jeder Regler an den Grenzen.
 - **Claims** (`tests/test_claims.py`): jede Tabelle und jeder Messsatz der README mit Zahlen wird aus dem Code gebildet und muss wörtlich in der README stehen.
 - **Oberfläche:** AppTest (Standard, jedes Schnellstart-Beispiel, Permalink mit Begrenzen und Einrasten, jeder Regler am Minimum und Maximum, alle Maxima zugleich), Footer, Laufzeit-Importe, Layout (Schnellstart oben in der Seitenleiste, fester Kopf, aktives Beispiel hervorgehoben, breite Tabellen scrollen auf dem Telefon).
-- **Testzahl:** 250 Tests (`pytest --collect-only -q`).
+- **Testzahl:** 251 Tests (`pytest --collect-only -q`).
 
 ## Dateistruktur
 
@@ -195,4 +195,4 @@ Gebaut mit Streamlit, Plotly und NumPy.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Optimaler Transport: vom Plan zum Abstand](https://sebastianhanisch.net/konzepte-optimaler-transport.html).

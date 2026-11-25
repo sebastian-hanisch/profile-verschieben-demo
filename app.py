@@ -86,10 +86,21 @@ an Normalverteilungen und an **Tagesprofilen** (der Verteilung der Nachfrage üb
 Die Annahme gilt für die Frage, welcher Zustand eintritt, und für die Summe der Standorte, nicht für die Gestalt eines Profils; und auch das **Baryzentrum** (Wasserstein-Baryzentrum, bei mehr als zwei Verteilungen die Verschiebung)
 erhält die Gestalt nicht in jedem Fall.
 
-Weiter unten: **❓ Kernfragen**, die drei **🔬 Experimente**, **🚧 Wo die Annahmen enden** und die Expander **⚠️ Annahmen, Grenzen und bekannte Probleme** und **📐 Mathematische Formulierung**.
+Weiter unten: der Expander **💬 In einfachen Worten**, **❓ Kernfragen**, die drei **🔬 Experimente**, **🚧 Wo die Annahmen enden** und die Expander **⚠️ Annahmen, Grenzen und bekannte Probleme** und **📐 Mathematische Formulierung**.
 Alle Rechnungen sind eindimensional und deterministisch (kein Zufall, kein Zufalls-Seed); gezählt wird in Zwischenschritten, Gipfeln und Standorten.
 """
 )
+
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/verschieben-statt-mischen-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Was ist die Mitte zwischen zwei Verteilungen, etwa zwei Tagesprofilen der Nachfrage? Es gibt zwei Antworten. Die **Mischung** nimmt zu jeder Uhrzeit den Durchschnitt der beiden Kurven; liegen die Gipfel weit auseinander, hat sie zwei Gipfel. Die **Verschiebung** rückt die ganze Kurve auf die andere zu und behält ihre Gestalt. Beide sind richtig, aber für verschiedene Fragen: Die Mischung beantwortet, wie hoch die Nachfrage mehrerer Standorte zusammen ist, die Verschiebung, wie ein Standort mit mittlerer Phase aussieht. Unterscheiden sich die Standorte nicht nur in der Phase, legt die Verschiebung Nachfrage zwischen die Spitzen. Alles gilt für erzeugte, eindimensionale Profile mit Quadratkosten und drei Standorte gleichen Gewichts.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/verschieben-statt-mischen-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
 
 with st.expander("So rechnen die zwei Mitten", expanded=True):
     st.markdown(
@@ -279,20 +290,30 @@ with st.expander("⚠️ Annahmen, Grenzen und bekannte Probleme"):
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/verschieben-statt-mischen-erklaert.json, nicht von Hand ändern)
     st.markdown(
         r"""
-**Lesehilfe.** *Gegeben:* zwei Verteilungen $P$, $Q$ auf der Zeitachse (oder $K$ Verteilungen $\nu_k$ mit Gewichten $\lambda_k$). *Gesucht:* ihre Mitte, einmal als Mischung, einmal als Verschiebung (Baryzentrum).
+**Lesehilfe.** Gegeben sind zwei Verteilungen $P$, $Q$ auf der Zeitachse (oder $K$ Verteilungen $\nu_k$ mit Gewichten $\lambda_k$). Gesucht ist ihre Mitte, einmal als Mischung, einmal als Verschiebung (Baryzentrum).
 
 | Symbol | Bedeutung |
 |---|---|
 | $P$, $Q$ | die beiden Verteilungen (Anfang und Ende), Gesamtmasse 1 |
 | $t$ | Zwischenschritt, $0 \le t \le 1$ |
-| $F$, $Q_P$ | Verteilungsfunktion und Quantilfunktion $Q_P(u) = \inf\{x : F(x) \ge u\}$ |
+| $F$, $Q_P$ | Verteilungsfunktion und Quantilfunktion $Q_P(u) = \inf\{x : F(x) \ge u\}$ ($Q_Q$ ist die von $Q$; das $Q$ in $Q_P$ steht für „Quantil“) |
+| $u$ | Stufe der Quantilfunktion, zwischen 0 und 1 |
 | $W_2$ | Wasserstein-Abstand der Ordnung 2 (Kosten $(x - y)^2$) |
+| $\mathrm{TV}$ | Totalvariation-Abstand der beiden Verteilungen |
 | $\lambda_k$, $\nu_k$ | Gewicht und Verteilung des Standorts $k$ ($\lambda_k = \tfrac13$) |
+| $\nu^{*}$, $f_k$ | Baryzentrum; Dichte der Verteilung $\nu_k$ |
 | $s$, $d_k$ | Phasenversatz und Verschiebung des Standorts $k$, $d_k \in \{-s, 0, +s\}$ |
-| $w_k$ | Morgenanteil des Standorts $k$ ($0{,}4 - \delta$, $0{,}4$, $0{,}4 + \delta$) |
+| $w_k$, $\delta$ | Morgenanteil des Standorts $k$ ($0{,}4 - \delta$, $0{,}4$, $0{,}4 + \delta$); Spreizung $\delta$ der Morgenanteile |
 
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/verschieben-statt-mischen-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
+    st.markdown(
+        r"""
 **Mischung und Verschiebung.**
 $$P_t^{\text{Mischung}} = (1 - t)\,P + t\,Q, \qquad Q_t^{\text{Verschiebung}}(u) = (1 - t)\,Q_P(u) + t\,Q_Q(u)$$
 In 1D ist $W_2^2(P, Q) = \int_0^1 \big(Q_P(u) - Q_Q(u)\big)^2\,\mathrm{d}u$. Die Verschiebung liegt auf der Geodäte: $W_2(P, P_t^{\text{Verschiebung}}) = t\,W_2(P, Q)$; die Mischung liegt auf der Geraden der Totalvariation: $\mathrm{TV}(P, P_t^{\text{Mischung}}) = t\,\mathrm{TV}(P, Q)$.
@@ -321,5 +342,5 @@ st.markdown("---")
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
     "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
-    "Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html)."
+    "Mehr zur Reihe: [Optimaler Transport: vom Plan zum Abstand](https://sebastianhanisch.net/konzepte-optimaler-transport.html)."
 )
